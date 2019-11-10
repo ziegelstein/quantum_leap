@@ -43,6 +43,33 @@ Gute Ideen
 
 - Leere Atome lächeln, gucken böser je voller sie sind
 
+- Für höhere LvL : 
+                                  Feststoff     = schwarz
+                                  Flüssigkeit   = blau
+                                  Gas           = rot
+                                  Unbekannt     = grau
+                                  unterstrichen = radioaktiv
+                  
+eventuell ig was mit Gefahrenkennzeichen/ Eigenschaften
+Fabenvergabe von der Art (Icon):
+                
+                                - Alkalimetalle
+                                - Erdalkalimetalle
+                                - Übergangsmetalle
+                                - Lanthanoide
+                                - Actinoide
+                                - Metalle
+                                - Halbmetalle
+                                - Nichtmetalle
+                                - Halogene
+                                - Edelgase
+                                - unbekannt
+                
+Streifen in der Art (Icon):
+                                - durchgehend = natürliches Element
+                                - schraffiert = künstliches Element
+
+
 
 Bonusideen (evtl. in grober Priorität):
 
