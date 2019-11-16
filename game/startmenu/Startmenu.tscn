@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://startmenu/Exit.gd" type="Script" id=1]
+
+[node name="Startmenu" type="Control"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 603.0
+use_top_left = true
+
+[node name="Button" type="Button" parent="CenterContainer"]
+margin_left = 389.0
+margin_top = 89.0
+margin_right = 429.0
+margin_bottom = 109.0
+text = "Quit"
+script = ExtResource( 1 )

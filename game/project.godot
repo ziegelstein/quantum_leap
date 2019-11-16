@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Quantum Leap"
+run/main_scene="res://startmenu/Startmenu.tscn"
 config/icon="res://icon.png"
 
 [rendering]
