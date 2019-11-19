@@ -16,8 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Quantum Leap"
-run/main_scene="res://startmenu/Startmenu.tscn"
+run/main_scene="res://Player/PlayerTest.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameControl="*res://Control/GameControl.gd"
+SoundControl="*res://Control/SoundControl.gd"
 
 [rendering]
 
