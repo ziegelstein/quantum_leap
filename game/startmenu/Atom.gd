@@ -23,7 +23,9 @@ func createAtom(atomType):
 	self.numOfNeutrons = atomtypes.get(atomType).get("numOfNeutrons")
 	self.numOfElectrons = atomtypes.get(atomType).get("numOfElectrons")
 	self.gravity = numOfNeutrons * 8 + numOfProtons * 5
-	self.gravity_distance_scale = numOfElectrons * 8
+	var shape = CircleShape2D.new()
+	shape.set_radius(numOfElectrons * 8)
+	$Graviation.shape = shape
 	createElectrons(numOfElectrons)
 
 func createElectrons(numOfElectrons):
@@ -31,11 +33,11 @@ func createElectrons(numOfElectrons):
 	var distanceToCore = 5
 	for i in range(numOfElectrons):
 		for i in range(electronsOnShell):
-			var elec = $Graviation/Electron.instance()
+			var elec = null # Null Pointer Exception: $Graviation/Electron.instance()
 			add_child(elec)
 			# TODO Think about a nice algorithm to place the electron
-			elec.set_position(Vector2(distanceToCore, distanceToCore))
-			electronsOnShell = 8
+			#elec.set_position(Vector2(distanceToCore, distanceToCore))
+			#electronsOnShell = 8
 		distanceToCore += 5
 	pass
 	
@@ -48,7 +50,7 @@ func createNeutrons(numOfNeutrons):
 		pass
 func _on_Atom_body_shape_entered(body_id, body, body_shape, area_shape):
 	if (body.name == "Player"):
-		$CollisionTimer.time_left = 500
+		$CollisionTimer.wait_time = 500
 		$CollisionTimer.one_shot = true
 		$CollisionTimer.start()
 		body.PAUSE_MODE_STOP
