@@ -1,7 +1,10 @@
 extends Area2D
 
-# TODO Move global
+onready var electron = preload("res://Atom/Electron.tscn")
+# TODO onready proton
+# TODO onready neutron
 
+# TODO Move global
 var atomtypes = {
 	"hydrogen" : { "numOfProtons" : 1, "numOfNeutrons": 1, "numOfElectrons": 1}
 	}
@@ -22,24 +25,28 @@ func createAtom(atomType):
 	self.numOfProtons = atomtypes.get(atomType).get("numOfProtons")
 	self.numOfNeutrons = atomtypes.get(atomType).get("numOfNeutrons")
 	self.numOfElectrons = atomtypes.get(atomType).get("numOfElectrons")
-	self.gravity = numOfNeutrons * 8 + numOfProtons * 5
+	self.gravity = numOfNeutrons * 80 + numOfProtons * 50
 	var shape = CircleShape2D.new()
 	shape.set_radius(numOfElectrons * 8)
 	$Graviation.shape = shape
 	createElectrons(numOfElectrons)
 
 func createElectrons(numOfElectrons):
+	randomize()
 	var electronsOnShell = 2
 	var distanceToCore = 5
 	for i in range(numOfElectrons):
+		var rquad = distanceToCore * distanceToCore
 		for i in range(electronsOnShell):
-			var elec = null # Null Pointer Exception: $Graviation/Electron.instance()
+			var elec = electron.instance()
+			var y = rand_range(-distanceToCore, distanceToCore)
+			var x = sqrt(rquad - y*y)
+			x = rand_range(-x, x)
+			elec.position = (Vector2(position.x - x, position.y - y))
 			add_child(elec)
-			# TODO Think about a nice algorithm to place the electron
-			#elec.set_position(Vector2(distanceToCore, distanceToCore))
-			#electronsOnShell = 8
+		electronsOnShell = 8
 		distanceToCore += 5
-	pass
+		print(get_child_count())
 	
 func createProtons(numOfProtons):
 	for i in range(numOfProtons):

@@ -16,13 +16,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Quantum Leap"
-run/main_scene="res://Player/PlayerTest.tscn"
+run/main_scene="res://startmenu/Startmenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 GameControl="*res://Control/GameControl.gd"
 SoundControl="*res://Control/SoundControl.gd"
+
+[physics]
+
+2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 
