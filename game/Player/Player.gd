@@ -9,6 +9,9 @@ var dragging
 var drag_start = Vector2()
 var energy = 100
 
+var rotate = false
+var rotation_speed = 1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,6 +52,17 @@ func set_scale(scale):
 			child.set_scale(original_scale * scale)
 	else:
 		set_scale(scale)
+
+func _process(delta):
+	if rotate and self.mode == RigidBody2D.MODE_STATIC:
+		self.rotation_degrees = self.rotation_degrees + self.rotation_speed
+
+func dock(atom):
+	set_physics_process(false)
+	self.mode = RigidBody2D.MODE_STATIC
+	self.position = Vector2(500,300)#atom.position
+	$Sprite.offset = Vector2(100,0)
+	self.rotate = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
