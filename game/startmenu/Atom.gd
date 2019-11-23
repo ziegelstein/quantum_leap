@@ -1,8 +1,8 @@
 extends Area2D
 
 onready var electron = preload("res://Atom/Electron.tscn")
-# TODO onready proton
-# TODO onready neutron
+onready var proton = preload("res://Atom/Proton.tscn")
+onready var neutron = preload("res://Atom/Neutron.tscn")
 
 # TODO Move global
 var atomtypes = {
@@ -25,11 +25,14 @@ func createAtom(atomType):
 	self.numOfProtons = atomtypes.get(atomType).get("numOfProtons")
 	self.numOfNeutrons = atomtypes.get(atomType).get("numOfNeutrons")
 	self.numOfElectrons = atomtypes.get(atomType).get("numOfElectrons")
-	self.gravity = numOfNeutrons * 80 + numOfProtons * 50
-	var shape = CircleShape2D.new()
-	shape.set_radius(numOfElectrons * 8)
-	$Graviation.shape = shape
+	
+	var shapeSize = CircleShape2D.new()
+	shapeSize.radius = numOfNeutrons * 80 + numOfProtons * 50
+	$Graviation.shape = shapeSize
+
 	createElectrons(numOfElectrons)
+	createNeutrons(numOfNeutrons)
+	createProtons(numOfProtons)
 
 func createElectrons(numOfElectrons):
 	randomize()
@@ -50,11 +53,17 @@ func createElectrons(numOfElectrons):
 	
 func createProtons(numOfProtons):
 	for i in range(numOfProtons):
-		pass
+		var add_proton = proton.instance()
+		add_proton.position = Vector2(position.x + (randi()%3 - randi()%6), position.y + (randi()%3 - randi()%6))
+		add_child(add_proton)
+		
 		
 func createNeutrons(numOfNeutrons):
 	for i in range(numOfNeutrons):
-		pass
+		var add_neutron = neutron.instance()
+		add_neutron.position = Vector2(position.x + (randi()%3 - randi()%6), position.y + (randi()%3 - randi()%6))
+		add_child(add_neutron)	
+		
 func _on_Atom_body_shape_entered(body_id, body, body_shape, area_shape):
 	if (body.name == "Player"):
 		$CollisionTimer.wait_time = 500
