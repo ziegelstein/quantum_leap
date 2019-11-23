@@ -7,11 +7,12 @@ extends RigidBody2D
 
 var dragging
 var drag_start = Vector2()
+var energy = 100
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	set_scale(Vector2(0.2,0.2))
 	
 func _physics_process(delta):
 #	if(Input.is_mouse_button_pressed(BUTTON_LEFT)):
@@ -31,6 +32,23 @@ func _physics_process(delta):
 func _integrate_forces(state):
 	if(Input.is_mouse_button_pressed(BUTTON_RIGHT)):
 		linear_velocity = Vector2(0,0)
+
+
+func set_scale(scale):
+	# Override behaviour only if it is a RigidBody2D and do not touch other nodes
+	if self is RigidBody2D:
+		for child in self.get_children():
+			if not child.has_meta("original_scale"):
+				# save original scale and position as a reference for future modifications
+				child.set_meta("original_scale",child.get_scale())
+				child.set_meta("original_pos",child.get_position())
+			var original_scale = child.get_meta("original_scale")
+			var original_pos = child.get_meta("original_pos")
+			# When scaled, position also has to be changed to keep offset
+			child.set_position(original_pos * scale)
+			child.set_scale(original_scale * scale)
+	else:
+		set_scale(scale)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
