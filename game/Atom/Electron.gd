@@ -1,14 +1,18 @@
-extends RigidBody2D
+extends Sprite
 
-var speed = 1
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+export var rotate = false
+export var rotation_speed = 1
+export var radius = 30
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	
+	self.offset = Vector2(radius,0)
+	set_process(true)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if speed == 360:
-		speed = 1
-	else:
-		speed+=1
-	rotate(speed)
-	linear_velocity = Vector2(speed % 90, speed % 90)
+	if(rotate):
+		self.rotation_degrees = self.rotation_degrees + rotation_speed
