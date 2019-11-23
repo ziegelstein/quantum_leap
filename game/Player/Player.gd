@@ -60,8 +60,8 @@ func _process(delta):
 func dock(atom):
 	set_physics_process(false)
 	self.mode = RigidBody2D.MODE_STATIC
-	self.position = Vector2(500,300)#atom.position
-	$Sprite.offset = Vector2(100,0)
+	self.position = atom.position
+	$Sprite.offset = Vector2(atom.radius,0)
 	self.rotate = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
