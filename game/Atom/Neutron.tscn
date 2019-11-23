@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Atom/Neutron.png" type="Texture" id=1]
+
+[node name="Neutron" type="KinematicBody2D"]
+
+[node name="NeutronSprite" type="Sprite" parent="."]
+position = Vector2( -72.3757, -0.00317383 )
+texture = ExtResource( 1 )

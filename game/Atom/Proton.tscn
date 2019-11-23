@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Atom/Proton.png" type="Texture" id=1]
+
+[node name="Proton" type="KinematicBody2D"]
+
+[node name="ProtonSprite" type="Sprite" parent="."]
+position = Vector2( 72.3756, 0.0032959 )
+texture = ExtResource( 1 )
